@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Prepare replay data into the canonical CS2MasterBot dataset format.
 
 This is intentionally a thin scaffold. A concrete parser adapter (for example,

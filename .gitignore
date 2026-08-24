@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.DS_Store
+
+# Local/raw data
+data/raw/
+data/processed/
+data/cache/
+*.dem
+*.zip
+
+# Training artifacts
+artifacts/
+checkpoints/
+runs/
+wandb/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# IDE
+.vscode/
+.idea/

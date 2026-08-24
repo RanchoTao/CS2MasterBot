@@ -1,0 +1,59 @@
+project:
+  name: cs2masterbot
+  seed: 42
+
+experiment:
+  map: de_mirage
+  mode: offline_imitation
+  device: cuda
+
+observation:
+  source: replay
+  team_information_only: true
+  include_teammates: true
+  include_visible_enemies: true
+  include_last_known_enemy_state: true
+  include_hidden_enemy_ground_truth: false
+  history_seconds: 12.0
+  sample_hz: 8
+
+latency:
+  reaction_delay_ms: 200
+  perception_hz: 30
+  aim_action_hz: 20
+  tactical_action_hz: 2
+
+data:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  manifest: data/manifest.jsonl
+  split_unit: match
+  train_ratio: 0.80
+  val_ratio: 0.10
+  test_ratio: 0.10
+
+aim_model:
+  enabled: true
+  family: small_transformer
+  context_frames: 16
+  target: view_delta_fire_move
+
+radar_model:
+  enabled: true
+  family: small_transformer
+  target: next_region_and_team_action
+  num_history_steps: 96
+
+training:
+  batch_size: 64
+  learning_rate: 0.0003
+  max_epochs: 20
+  num_workers: 4
+  mixed_precision: true
+
+evaluation:
+  enforce_information_mask: true
+  enforce_reaction_delay: true
+  report_variance: true
+  held_out_by_match: true
+  held_out_by_team: true

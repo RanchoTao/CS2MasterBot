@@ -1,10 +1,7 @@
 """Canonical observation schema for offline and streaming CS2 research."""
 
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from typing import Literal
-
 
 Team = Literal["T", "CT"]
 

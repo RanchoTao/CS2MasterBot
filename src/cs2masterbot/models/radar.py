@@ -1,12 +1,9 @@
 """Interfaces for radar-like tactical and team policies."""
 
-from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import Literal, Protocol
 
 from cs2masterbot.data.schema import TeamObservation
-
 
 TeamCommand = Literal[
     "hold",

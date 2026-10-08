@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Protocol
 
@@ -18,6 +19,9 @@ class RuntimeLimits:
     tactical_action_hz: float = 2.0
 
     def validate(self) -> None:
+        values = (self.reaction_delay_ms, self.perception_hz, self.aim_action_hz, self.tactical_action_hz)
+        if any(not isinstance(value, int) and not math.isfinite(value) for value in values):
+            raise ValueError("all runtime limits must be finite")
         if self.reaction_delay_ms < 0:
             raise ValueError("reaction_delay_ms must be non-negative")
         if min(self.perception_hz, self.aim_action_hz, self.tactical_action_hz) <= 0:
